@@ -135,7 +135,6 @@ bool is_a_palindrome(int number)
 //-------------------------TASK7----------------------
 
 bool isPrimeDivisor(int div) {
-    bool flag = true;
     for (int j = 2; j <= div / 2; j++) {
         if (div % j == 0) {
             return false;
