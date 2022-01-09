@@ -174,27 +174,43 @@ double recursiveMultiplication (const double arr[], int length) {
 }
 
 //TASK6
-void letterSwap (char* str, int* arr) {
-    if (*str == '\0') {
+// void letterSwap (char* str, int* arr) {
+//     if (*str == '\0') {
+//         return;
+//     }
+//     *arr = ((*arr) % 26);
+//     if (*str <= 'z' && *str >= 'a') {
+//         *str += *arr;
+//         if (*str > 'z') {
+//             *str -= 26;
+//         }
+//     }
+//     else if (*str < 'Z' && *str > 'A') {
+//         *str += *arr;
+//         if (*str > 'Z') {
+//             *str -= 26;
+//         }
+//     }
+//     else {
+//         cout << "Invalid data!" << endl;
+//         return;
+//     }
+//     return letterSwap(str + 1, arr + 1);
+// }
+void letterSwap(char* str, int arr[]) {
+    if(*str == '\0') {
         return;
     }
-    if (*str <= 'z' && *str >= 'a') {
-        *str += *arr;
-        if (*str > 'z') {
-            *str -= 26;
-        }
+    //*str <=> str[0]
+    bool isSmall = *str >= 'a' && *str <= 'z';
+    *str = *str + arr[0] % 26;
+    if(*str > 'z' && isSmall) {
+        *str -= 26;
     }
-    else if (*str < 'Z' && *str > 'A') {
-        *str += *arr;
-        if (*str > 'Z') {
-            *str -= 26;
-        }
+    if(*str > 'Z' && !isSmall) {
+        *str -= 26;
     }
-    else {
-        cout << "Invalid data!" << endl;
-        return;
-    }
-    return letterSwap(str + 1, arr + 1);
+    letterSwap(++str, ++arr);
 }
 
 //TASK7
