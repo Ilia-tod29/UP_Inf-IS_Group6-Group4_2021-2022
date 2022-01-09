@@ -50,7 +50,11 @@ int decimalToBinary(int number, int d = 1) {
 
 //TASK5
 bool isPowerOfTwo(int number) {
-    if (number == 0 || number == 2) {
+    if(number <= 0) {
+        return false;
+    }
+
+    if (number == 1 || number == 2) {
         return true;
     }
 
