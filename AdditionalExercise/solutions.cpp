@@ -136,26 +136,34 @@ int lettersCount (const char* str) {
 }
 bool isAnagram (char* str1, char* str2) {
     if (lettersCount(str1) == lettersCount(str2)) {
-        int help = 0;
-        while (str1[help] != '\0' && str2[help] != '\0') {
-            char currentLetter = str1[help];
+        int iterate = 0, innerIterate;
+        bool isLetter;
+        while (str1[iterate] != '\0') {
+            isLetter = (str1[iterate] >= 'a' && str1[iterate] <= 'z') || (str1[iterate] >= 'A' && str1[iterate] <= 'Z');
+            if(!isLetter) {
+                iterate++;
+                continue;
+            }
+            innerIterate = 0;
+            char currentLetter = str1[iterate];
             int counter1 = 0, counter2 = 0;
-            while (*str1 != '\0') {
-                if (*str1 == currentLetter || *str1 + 32 == currentLetter || *str1 - 32 == currentLetter) {
+            while (str1[innerIterate] != '\0') {
+                if ((str1[innerIterate] == currentLetter || str1[innerIterate] + 32 == currentLetter || str1[innerIterate] - 32 == currentLetter)) {
                     counter1++;
                 }
-                str1++;
+                innerIterate++;
             }
-            while (*str2 != '\0') {
-                if (*str2 == currentLetter || *str2 + 32 == currentLetter || *str2 - 32 == currentLetter) {
+            innerIterate = 0;
+            while (str2[innerIterate] != '\0') {
+                if (str2[innerIterate] == currentLetter || str2[innerIterate] + 32 == currentLetter || str2[innerIterate] - 32 == currentLetter) {
                     counter2++;
                 }
-                str2++;
+                innerIterate++;
             }
             if (counter1 != counter2) {
                 return false;
             }
-            help++;
+            iterate++;
         }
         return true;
     }
